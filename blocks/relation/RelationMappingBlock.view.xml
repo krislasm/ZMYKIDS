@@ -1,0 +1,25 @@
+<!--
+
+    Copyright (C) 2009-2017 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="swa.mykids.controller.RelationMappingBlock" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<forms:SimpleForm editable="false" id="idRelationForm" layout="ResponsiveGridLayout" maxContainerCols="1">
+		<core:Title text="{oRelationModel>ReltypeDes}"></core:Title>
+		<layout:VerticalLayout id="idRelationVBox">
+			<Label design="Bold" id="idRelName" text="{oRelationModel>FullNameText}"/>
+			<Text id="idRelationLegalRes" text="{i18n>LBL_LEGALGR}" visible="{oRelationModel>LegalRes}"/>
+			<Text id="idEmergencyConcat" text="{i18n>LBL_EMRGNCY}" visible="{oRelationModel>EmergencyCont}"/>
+			<Link id="idLinkTel" press="onTelPress" text="{oRelationModel>TeleNum}"
+				visible="{path:'oRelationModel>EmergencyCont',formatter: '.formatter.formatVisibility'}"></Link>
+			<Link id="idRelMail" press="onMailPress" text="{oRelationModel>EmailAddr}"
+				visible="{path:'oRelationModel>EmailAddr',formatter: '.formatter.AddrTypeVisibility'}"></Link>
+			<Text id="idRelAdd" text="{parts:[{path:'oRelationModel>HouseNum'},{path:'oRelationModel>Street'}], formatter:'.formatter.concatAddress'}"/>
+			<Text id="idRelPostalCode" text="{parts:[{path:'oRelationModel>CityName'},{path:'oRelationModel>PostalCode'}], formatter:'.formatter.concatPinCode'}"/>
+			<Text id="idRelCountryName" text="{oRelationModel>CountryName}"/>
+			<!-- Extension point to add/delete content -->
+			<core:ExtensionPoint name="extRelationMapping"></core:ExtensionPoint>
+		</layout:VerticalLayout>
+	</forms:SimpleForm>
+</mvc:View>

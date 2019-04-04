@@ -1,0 +1,22 @@
+<!--
+
+    Copyright (C) 2009-2017 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="swa.mykids.controller.InsuranceMappingBlock" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<forms:SimpleForm emptySpanL="0" emptySpanM="0" emptySpanS="0" id="idForm1" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+		layout="ResponsiveLayout" maxContainerCols="2" title="" width="100%">
+		<core:Title level="H4" text="{i18n>LBL_INS_DETAILS}"></core:Title>
+		<Label id="idInsType" text="{i18n>LBL_INSTYPE}"/>
+		<Text id="idObjInstype" text="{/InsuranceTypeText}"></Text>
+		<Label id="idInsNo" text="{i18n>LBL_INSNO}"/>
+		<Text id="idObjInsNo" text="{/HealthIndex}"/>
+		<Label id="idFormContractNo" text="{i18n>LBL_CONTRACT}"/>
+		<Text id="idContractNumber" text="{/ContractNumber}"/>
+		<Label id="idValidFrm" text="{i18n>LBL_VALIDITY}"/>
+		<Text id="idValidity" text="{parts:[{path:'/ValidFrom'},{path:'/ValidTo'}],  formatter:'.formatter.concatDatesFormat'}"/>
+		<!-- Extension point to add/delete content -->
+		<core:ExtensionPoint name="extInsuranceMapping"></core:ExtensionPoint>
+	</forms:SimpleForm>
+</mvc:View>

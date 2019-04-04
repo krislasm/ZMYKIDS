@@ -1,0 +1,22 @@
+<!--
+
+    Copyright (C) 2009-2017 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="swa.mykids.controller.ContactMappingBlock" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<forms:SimpleForm emptySpanL="0" emptySpanM="0" emptySpanS="0" id="idForm7" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+		layout="ResponsiveLayout" maxContainerCols="2" title="" width="100%">
+		<core:Title level="H4" text="{i18n>LBL_INS_ADDRSS}"></core:Title>
+		<Label id="idFormBranchOff" text="{i18n>BRANCH_OFF}"/>
+		<Text id="idBranchOfficeText" text="{/BranchOfficeText}"/>
+		<Label id="idInsAdrss" text="{i18n>LBL_ADRS}"/>
+		<Text id="idBranchAddress" text="{/Address}"/>
+		<Label id="idCntctPerson" text="{i18n>LBL_CNTCTPER}"/>
+		<Text id="idContactPerson" text="{/ContactPerson}"/>
+		<Label id="idFormContactNo" text="{i18n>LBL_CNTCTNUM}"/>
+		<Link id="idTelephone" press="onPhonePress" text="{/TelephoneNo}" visible="{path:'/TelephoneNo',formatter: '.formatter.checkValue'}"/>
+		<!-- Extension point to add/delete content -->
+		<core:ExtensionPoint name="extContactMapping"></core:ExtensionPoint>
+	</forms:SimpleForm>
+</mvc:View>

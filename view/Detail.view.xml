@@ -1,0 +1,410 @@
+<mvc:View controllerName="swa.mykids.controller.Detail" xmlns:m="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:me="sap.me"
+	xmlns:address="swa.mykids.blocks.address" xmlns:disability="swa.mykids.blocks.disability" xmlns:health="swa.mykids.blocks.health"
+	xmlns:insurance="swa.mykids.blocks.insurance" xmlns:relation="swa.mykids.blocks.relation" xmlns:visa="swa.mykids.blocks.visa"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:semantic="sap.m.semantic"
+	xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:t="sap.ui.table" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable">
+	<m:Page id="page" enableScrolling="true" title="{i18n>detailTitle}">
+		<m:content>
+			<m:IconTabBar id="iconTabBar" select="handleIconTabBarSelect">
+				<m:items>
+					<m:IconTabFilter key="Details" text="Personal Details" tooltip="{i18n>detailIconTabBarInfo}">
+						<ObjectPageLayout alwaysShowContentHeader="false" editHeaderButtonPress="onEditPress" enableScrolling="false" enableLazyLoading="true"
+							id="ObjectPageLayout" isChildPage="false" showEditHeaderButton="false" showHeaderContent="true" showTitleInHeaderContent="true"
+							subSectionLayout="TitleOnTop" upperCaseAnchorBar="true" useIconTabBar="false" showAnchorBar="false" height="560px"
+							class="sapUiResponsiveContentPadding">
+							<headerTitle>
+								<ObjectPageHeader headerDesign="Light" id="idObjectPageHeader" isActionAreaAlwaysVisible="false" isObjectIconAlwaysVisible="false"
+									isObjectSubtitleAlwaysVisible="false" isObjectTitleAlwaysVisible="false" objectImageShape="Circle" objectImageURI="{/PhotoUri}"
+									objectSubtitle="{/ProgramOfStudy}" objectTitle="{/Name}" showPlaceholder="true"></ObjectPageHeader>
+							</headerTitle>
+							<sections>
+								<ObjectPageSection id="idAddressSectn" title="{i18n>LBL_ADDRESSES}">
+									<subSections>
+										<ObjectPageSubSection blocks="{path:'oResModel>/results'}" id="idAddObjPageSubSec">
+											<blocks>
+												<address:AddressMappingBlock columnLayout="1" id="addressBlock" showSubSectionMore="false"></address:AddressMappingBlock>
+											</blocks>
+										</ObjectPageSubSection>
+									</subSections>
+								</ObjectPageSection>
+								<ObjectPageSection id="idRelSectn" title="{i18n>LBL_RELATIONS}">
+									<subSections>
+										<ObjectPageSubSection blocks="{path:'oRelationModel>/results'}" id="idRelObjSubSec">
+											<blocks>
+												<relation:RelationMappingBlock columnLayout="1" id="relationBlock" showSubSectionMore="false"></relation:RelationMappingBlock>
+											</blocks>
+										</ObjectPageSubSection>
+									</subSections>
+								</ObjectPageSection>
+								<ObjectPageSection id="idHealthSectn" title="{i18n>LBL_HEALTHINS}">
+									<subSections>
+										<ObjectPageSubSection id="idInsDetails" title="{i18n>LBL_INSURANC}">
+											<blocks>
+												<insurance:InsuranceMappingBlock columnLayout="1" id="insuranceBlock" showSubSectionMore="false"></insurance:InsuranceMappingBlock>
+												<insurance:ContactMappingBlock columnLayout="1" id="contactBlock" showSubSectionMore="false"></insurance:ContactMappingBlock>
+											</blocks>
+										</ObjectPageSubSection>
+										<ObjectPageSubSection id="idDisability" title="{i18n>LBL_CHALLDATA}">
+											<blocks>
+												<disability:DisabilityMappingBlock columnLayout="1" id="disabilityBlock" showSubSectionMore="false"></disability:DisabilityMappingBlock>
+											</blocks>
+										</ObjectPageSubSection>
+									</subSections>
+								</ObjectPageSection>
+								<ObjectPageSection id="idPersnlSectn" title="{i18n>LBL_PERSONAL}">
+									<subSections>
+										<ObjectPageSubSection id="idPersonalSec" title="{i18n>LBL_PERSONAL}">
+											<blocks>
+												<forms:SimpleForm emptySpanL="0" emptySpanM="0" emptySpanS="0" id="idPersonalSec1" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+													layout="ResponsiveLayout" maxContainerCols="2" title="" width="100%">
+													<core:Title id="idCitizenTitle" level="H4" text="{i18n>LBL_CITZN}"></core:Title>
+													<m:Label id="idPriNat" text="{i18n>LBL_PRIMNAT}"/>
+													<m:Text id="idNationality" text="{/PrimaryNationality}"/>
+													<m:Label id="idSecNat" text="{i18n>LBL_SECNAT}" visible="{path:'/SecondaryNationality',formatter: '.formatter.checkValue'}"/>
+													<m:Text id="idSecNationality" text="{/SecondaryNationality}" visible="{path:'/SecondaryNationality',formatter: '.formatter.checkValue'}"/>
+													<m:Label id="idDOB" text="{i18n>LBL_DOB}"/>
+													<m:Text id="idBirth" text="{path:'/DateBirth',formatter: '.formatter.formatDate'}"/>
+													<m:Label id="idBrthPlce" text="{i18n>LBL_POB}"/>
+													<m:Text id="idBirthPlace" text="{/Birthplace}"/>
+												</forms:SimpleForm>
+												<forms:SimpleForm emptySpanL="0" emptySpanM="0" emptySpanS="0" id="idPersonalSec2" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+													layout="ResponsiveLayout" maxContainerCols="2" title="" width="100%">
+													<core:Title id="idPassportTitle" level="H4" text="{i18n>LBL_PASSVISA}"></core:Title>
+													<m:Label id="idPassNo" text="{i18n>LBL_PASSNO}"/>
+													<m:Text id="idPassNum" text="{/PassportNumber}"/>
+													<m:Label id="idPassExp" text="{i18n>LBL_PASSEXP}"/>
+													<m:Text id="idPassExpDate" text="{path:'/PassportExpiryDate',formatter: '.formatter.formatDate'}"/>
+													<m:Label id="idResStat" text="{i18n>LBL_RESTAT}"/>
+													<m:Text id="idResStatus" text="{/ResidencyStatus}"/>
+												</forms:SimpleForm>
+												<forms:SimpleForm emptySpanL="0" emptySpanM="0" emptySpanS="0" id="idPersonalSec3" labelSpanL="4" labelSpanM="4" labelSpanS="4"
+													layout="ResponsiveLayout" maxContainerCols="1" title="" width="50%">
+													<core:Title id="idBankTitle" level="H4" text="{i18n>LBL_BANKDET}"></core:Title>
+													<m:Label id="idBnkNme" text="{i18n>LBL_BANKNAME}"/>
+													<m:Text id="idBankName" text="{/BankName}"/>
+													<m:Label id="idBnkAddrss" text="{i18n>LBL_ADRS}"/>
+													<m:Text id="idBankAdd" text="{/Address}"/>
+													<m:Label id="idAccNum" text="{i18n>LBL_ACCNO}"/>
+													<m:Text id="idBankAcc" text="{/AccountNumber}"/>
+													<m:Label id="idBnkCode" text="{i18n>LBL_BNKCOD}"/>
+													<m:Text id="idBankCode" text="{/BankCode}"/>
+													<m:Label id="idBicCode" text="{i18n>LBL_BICODE}"/>
+													<m:Text id="idSwiftCode" text="{/SwiftBicCode}"/>
+												</forms:SimpleForm>
+											</blocks>
+										</ObjectPageSubSection>
+									</subSections>
+								</ObjectPageSection>
+								<ObjectPageSection id="idVisaSectn" title="{i18n>LBL_VISA}">
+									<subSections>
+										<ObjectPageSubSection blocks="{path:'oVisaModel>/results'}" id="idVisaObjSubSec" title="{i18n>LBL_VISA}">
+											<blocks>
+												<visa:VisaMappingBlock columnLayout="1" id="visaBlock"/>
+											</blocks>
+										</ObjectPageSubSection>
+									</subSections>
+								</ObjectPageSection>
+							</sections>
+						</ObjectPageLayout>
+					</m:IconTabFilter>
+					<m:IconTabFilter key="TimeTable" text="Time Table" tooltip="{i18n>detailIconTabBarAttachments}">
+						<me:Calendar width="100%" id="cal" firstDayOffset="1" tapOnDate="onDateClicked" changeRange="onDateRangeChanged"
+							changeCurrentDate="onCurrentDateChanged" visible="true"></me:Calendar>
+						<me:CalendarLegend id="calLegId" legendForType06="{i18n>EVENTS_AVAILABLE}" legendForSelected="{i18n>SELECTED}" design="Approval"
+							expanded="true" expandable="true"></me:CalendarLegend>
+						<m:Table xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:me="sap.me" xmlns:ui="sap.ca.ui" xmlns:layout="sap.ui.layout" id="l" inset="false"
+							width="100%">
+							<m:columns>
+								<m:Column width="0.5em">
+									<m:header>
+										<m:Label/>
+									</m:header>
+								</m:Column>
+								<m:Column width="5em">
+									<m:header>
+										<m:Label/>
+									</m:header>
+								</m:Column>
+								<m:Column hAlign="Left">
+									<m:header>
+										<m:Label/>
+									</m:header>
+								</m:Column>
+							</m:columns>
+							<m:ColumnListItem id="AppListItem" press="onAppointmentClicked">
+								<!--type="Navigation"-->
+								<m:cells>
+									<m:Label/>
+									<m:ObjectIdentifier title="{path:'StartTime', formatter: '.formatter.formatDateTT' }" text="{Duration}" class="sapMTableContentMargin"/>
+									<m:VBox>
+										<m:items>
+											<m:ObjectStatus state="Success" text="{parts:[{path: 'EventName'},{path: 'Status'}], formatter: '.formatter.setEvntStatus'}"/>
+											<m:Label/>
+											<layout:VerticalLayout id="mobileLayoutId">
+												<m:Label text="{Location}"/>
+												<m:Label width="1.5em"/>
+												<m:Label text="{Building}"/>
+												<m:Label text="{Room}"/>
+												<m:Label/>
+											</layout:VerticalLayout>
+										</m:items>
+									</m:VBox>
+									<!-- <Link wrapping="true"  id="navId" visible="{Status}" text="{i18n>TXT_OPEN}" press="onclick" /> -->
+								</m:cells>
+							</m:ColumnListItem>
+						</m:Table>
+						<!--<m:ScrollContainer id="scroll" width="100%" horizontal="false" vertical="true">
+							<m:content>
+								
+							
+							</m:content>
+						</m:ScrollContainer>-->
+					</m:IconTabFilter>
+					<m:IconTabFilter key="Attendance" text="Attendance">
+						<layout:Grid xmlns:sap.ui.layout="sap.ui.layout" id="__grid0" defaultSpan="XL2 L3 M4 S12">
+							<layout:content>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="Academic Year" width="100%" id="year"/>
+										<m:Select id="yearDD" width="95%" items="{Year>/Value}" change="handleYearChange">
+											<core:ListItem key="{Year>yearId}" text="{Year>yearDesc}"/>
+										</m:Select>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="Term" width="100%" id="__label4"/>
+										<m:Select id="termDD" width="95%" items="{Term>/Value}" change="handleTermChange">
+											<core:ListItem key="{Term>TermId}" text="{Term>TermDesc}"/>
+										</m:Select>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="" width="100%"/>
+										<m:Button id="attDisplay" text="Display" tap="getAttendanceDetails" width="9em"/>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%" visible="false">
+									<m:items>
+										<m:Label text="Late" width="100%"/>
+										<m:Text id="late" text="" width="100%"/>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%" visible="false">
+									<m:items>
+										<m:Label text="Absent" width="100%"/>
+										<m:Text text="" id="absent" width="100%"/>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%" visible="false">
+									<m:items>
+										<m:Label text="Approved Leave" width="100%"/>
+										<m:Text text="" id="approve" width="100%"/>
+									</m:items>
+								</m:VBox>
+							</layout:content>
+						</layout:Grid >
+						<layout:Grid defaultSpan="XL12 L12 M12 S12">
+							<m:Table id="AttTable" inset="false" mergeDuplicates="true" alternateRowColors="true" items="{AttDetails>/Value}">
+								<m:columns>
+									<m:Column width="10em">
+										<m:Label text="Date"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Subject" tooltip="Subject"/>
+									</m:Column>
+									<m:Column visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Academic Year" tooltip="Academic Year"/>
+									</m:Column>
+									<m:Column visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Term"/>
+									</m:Column>
+									<m:Column >
+										<m:Label text="Attendance Status"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:Text text="{path:'AttDetails>Date',formatter: '.formatter.formatDate'}"/>
+											<m:Text text="{AttDetails>SubStext}"/>
+											<m:Text text="{AttDetails>AcadYear}"/>
+											<m:Text text="{AttDetails>TermDesc}"/>
+											<m:Text text="{AttDetails>Status}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+							<!--	<t:Table id="AttTable" selectionMode="None" class="idTable1" rows="{AttDetails>/Value}" width="95%">
+								<t:columns>
+									<t:Column sortProperty="Date" width="10em">
+										<m:Label text="Date"/>
+										<t:template>
+											<m:Text text="{path:'AttDetails>Date',formatter: '.formatter.formatDate'}"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="AcadYear" visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Academic Year" tooltip="Academic Year"/>
+										<t:template>
+											<m:Text text="{AttDetails>AcadYear}"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="TermDesc" visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Term"/>
+										<t:template>
+											<m:Text text="{AttDetails>TermDesc}"/>
+										</t:template>
+									</t:Column>
+									<t:Column sortProperty="Status" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Attendance Status"/>
+										<t:template>
+											<m:Text text="{AttDetails>Status}"/>
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>-->
+						</layout:Grid>
+					</m:IconTabFilter>
+					<m:IconTabFilter key="Assignments" text="Assignments">
+						<layout:Grid xmlns:sap.ui.layout="sap.ui.layout" defaultSpan="XL2 L3 M4 S12">
+							<layout:content>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="Academic Year" width="100%" id="yearAssignment"/>
+										<m:Select id="yearDDAssignment" width="95%" items="{YearAssignment>/Value}" change="handleYearAssignmentChange">
+											<core:ListItem key="{YearAssignment>yearId}" text="{YearAssignment>yearDesc}"/>
+										</m:Select>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="Term" width="100%"/>
+										<m:Select id="termDDAssignment" width="95%" items="{TermAssignment>/Value}" change="handleTermAssignmentChange">
+											<core:ListItem key="{TermAssignment>TermId}" text="{TermAssignment>TermDesc}"/>
+										</m:Select>
+									</m:items>
+								</m:VBox>
+								<m:VBox width="100%">
+									<m:items>
+										<m:Label text="" width="100%"/>
+										<m:Button id="AssignmentDisplay" text="Display" tap="getAssignmentDetail" width="9em"/>
+									</m:items>
+								</m:VBox>
+							</layout:content>
+						</layout:Grid>
+						<layout:Grid defaultSpan="XL12 L12 M12 S12">
+							<m:Table id="AssignmentTable" inset="false" alternateRowColors="true" items="{AssignmentDetails>/Value}">
+								<m:columns>
+									<m:Column width="10em">
+										<m:Label text="Assignment Date"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Subject" tooltip="Subject"/>
+									</m:Column>
+									<m:Column visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Academic Year" tooltip="Academic Year"/>
+									</m:Column>
+									<m:Column visible="false" demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Term"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Task Type"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Assignment Type"/>
+									</m:Column>
+									<m:Column demandPopin="true" minScreenWidth="Tablet">
+										<m:Label text="Assignment Name"/>
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem>
+										<m:cells>
+											<m:Text text="{path:'AssignmentDetails>DateAssignment',formatter: '.formatter.formatDate'}"/>
+											<m:Text text="{AssignmentDetails>SubStext}"/>
+											<m:Text text="{AssignmentDetails>AcadYear}"/>
+											<m:Text text="{AssignmentDetails>TermDesc}"/>
+											<m:Text text="{AssignmentDetails>TaskType}"/>
+											<m:Text text="{AssignmentDetails>AssignmentType}"/>
+											<m:Text text="{AssignmentDetails>AssignmentName}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+						</layout:Grid>
+						<!--	<t:Table id="AssignmentTable" rows="{AssignmentDetails>/Value}" selectionMode="None" class="idTable1" width="95%">
+							<t:columns>
+								<t:Column sortProperty="DateAssignment" width="8em">
+									<m:Label text="Date"/>
+									<t:template>
+										<m:Text text="{path:'AssignmentDetails>DateAssignment',formatter: '.formatter.formatDate'}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="AcadYear" visible="false" demandPopin="true" minScreenWidth="Tablet">
+									<m:Label text="Academic Year" tooltip="Academic Year"/>
+									<t:template>
+										<m:Text text="{AssignmentDetails>AcadYear}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="TermDesc" visible="false" demandPopin="true" minScreenWidth="Tablet">
+									<m:Label text="Term"/>
+									<t:template>
+										<m:Text text="{AssignmentDetails>TermDesc}" width="100%"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="TaskType" demandPopin="true" minScreenWidth="Tablet">
+									<m:Label text="Task Type"/>
+									<t:template>
+										<m:Text text="{AssignmentDetails>TaskType}"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="AssignmentType" demandPopin="true" minScreenWidth="Tablet">
+									<m:Label text="Assignment Type"/>
+									<t:template>
+										<m:Text text="{AssignmentDetails>AssignmentType}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column sortProperty="AssignmentName" demandPopin="true" minScreenWidth="Tablet">
+									<m:Label text="Assignment Name"/>
+									<t:template>
+										<m:Text text="{AssignmentDetails>AssignmentName}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>-->
+					</m:IconTabFilter>
+					<m:IconTabFilter key="FinalResult" text="Final Results">
+					<!--	<m:ScrollContainer height="550px" width="100%"  vertical="true">-->
+							<m:FlexBox direction="Column" renderType="Div" class="sapUiSmallMargin">
+								<!--	<m:FlexBox>
+									<m:Button text="Correctly Displayed" press="onCorrectPathClick"/>
+									<m:Button text="Loading Error" press="onIncorrectPathClick"/>
+								</m:FlexBox>-->
+								<m:PDFViewer id="pdfViewer" source="{FinalPdf>/Value/0/pdfUri}" showDownloadButton="false" height="525px" title="Report Card" displayType="Embedded">
+									<m:layoutData>
+										<m:FlexItemData growFactor="1"/>
+									</m:layoutData>
+								</m:PDFViewer>
+							</m:FlexBox>
+					<!--	</m:ScrollContainer>-->
+					</m:IconTabFilter>
+				</m:items>
+			</m:IconTabBar>
+		</m:content>
+		<m:footer>
+			<m:Bar translucent="false" id="master_footer">
+				<m:contentMiddle>
+					<m:SegmentedButton id="sbtnTimeSwitch" selectedButton='btnMonth'>
+						<m:buttons>
+							<m:Button id="btnToday" text="{i18n>TXT_TODAY}" tap="_buttonToday" width="6em" visible="false"/>
+							<m:Button id="btnWeek" text="{i18n>TXT_WEEK}" tap="_buttonDisplayWeek" width="6em" visible="false"/>
+							<m:Button id="btnMonth" text="{i18n>TXT_MONTH}" tap="_buttonDisplayMonth" width="6em" visible="false"/>
+						</m:buttons>
+					</m:SegmentedButton>
+				</m:contentMiddle>
+			</m:Bar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

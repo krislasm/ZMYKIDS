@@ -1,0 +1,24 @@
+<!--
+
+    Copyright (C) 2009-2017 SAP SE or an SAP affiliate company. All rights reserved.
+
+-->
+<mvc:View controllerName="swa.mykids.controller.AddressMappingBlock" xmlns:core="sap.ui.core"
+	xmlns:forms="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<forms:SimpleForm editable="false" id="idForm" layout="ResponsiveGridLayout" maxContainerCols="1">
+		<core:Title text="{oResModel>AddressTypeText}"></core:Title>
+		<layout:VerticalLayout id="idAddBlockVBox">
+			<!--<Text id="idAddressNum" text="{parts : [{path: 'oResModel>HouseNo'},{path: 'oResModel>Street'}], formatter: '.formatter.concatAddress'}"/>
+			<Text id="idPostalcode" text="{parts : [{path: 'oResModel>City'},{path: 'oResModel>PostlCod1'}], formatter: '.formatter.concatPinCode'}"/>-->
+			<Text id="idAddressNum" text="{oResModel>streetNum}"/>
+			<Text id="idPostalcode" text="{oResModel>pinAdd}"/>
+			<Text id="idCountryName" text="{oResModel>CountryName}"/>
+			<Text id="idValidity" visible="false" text="{parts:[{path:'oResModel>Validfromdate'},{path:'oResModel>Validtodate'}], formatter:'.formatter.formatDate'}"/>
+			<!--<Text id="idValidity"
+				text="{ parts:[{path:'oResModel>Validfromdate'},{path:'oResModel>Validtodate'}], type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' }, formatter:'.formatter.testFormatDate'} "/>-->
+			<Link id="idTelNum" press="onMobPress" text="{oResModel>TelNo}" visible="{path:'oResModel>TelNo',formatter: '.formatter.checkValue'}"/>
+			<!-- Extension point to add/delete content -->
+			<core:ExtensionPoint name="extAddressMapping"></core:ExtensionPoint>
+		</layout:VerticalLayout>
+	</forms:SimpleForm>
+</mvc:View>

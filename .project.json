@@ -1,0 +1,22 @@
+{
+  "mockpreview": {
+    "mockUri": "",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "deploy": {
+    "destination": "DSF",
+    "name": "ZMYKIDS"
+  },
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "buildRequired": true,
+    "targetFolder": "dist",
+    "lastBuildDateTime": "Fri, 15 Mar 2019 04:16:38 GMT"
+  }
+}

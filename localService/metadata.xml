@@ -1,0 +1,649 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="PIQ_ADVISEE_DETAILS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="ExportToPdf" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AdviseeNo"/>
+                    <PropertyRef Name="AcademicFlag"/>
+                    <PropertyRef Name="NoteFlag"/>
+                    <PropertyRef Name="ActivitiesFlag"/>
+                    <PropertyRef Name="HoldFlag"/>
+                    <PropertyRef Name="ProgramId"/>
+                </Key>
+                <Property Name="AdviseeNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcademicFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivitiesFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AdviseesList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="ProgramOfStudyId"/>
+                </Key>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BlockedInd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdvisedDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldstatusText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="HOLDSTATUS_TEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentStatus" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Sts Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentObjid" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Student Obj. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentName" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="STUDENT_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Spec." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SearchText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="SEARCH_TEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramOfStudyId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramOfStudyText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ListToDetailsHdr" Relationship="PIQ_ADVISEE_DETAILS_SRV.ListToDetailsHdr" FromRole="FromRole_ListToDetailsHdr" ToRole="ToRole_ListToDetailsHdr"/>
+            </EntityType>
+            <EntityType Name="AdviseeHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="ProgramID"/>
+                </Key>
+                <Property Name="BlockedInd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=true, -=false, space=unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DegreeAuditInd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldState" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Spec." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentName" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="STUDENT_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Program" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoURI" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Photo URI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSessTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Acad. Session (Desc)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailID" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdvNoteDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Changed on" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Specializations" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SPECIALIZATIONS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldStatusTxt" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="STATUS TEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentStatusTxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Status Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PreviousResults" Relationship="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeaderToAdviseeResults" FromRole="FromRole_AdviseeHeaderToAdviseeResults" ToRole="ToRole_AdviseeHeaderToAdviseeResults"/>
+                <NavigationProperty Name="Courses" Relationship="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeaderToCourseList" FromRole="FromRole_AdviseeHeaderToCourseList" ToRole="ToRole_AdviseeHeaderToCourseList"/>
+            </EntityType>
+            <EntityType Name="AdviseeDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="ProgramId"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Specializations" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SPECIALIZATIONS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentName" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="STUDENT_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdvisingContext" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ADVISING_CONTEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="First name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoURI" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Photo URI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BirthDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Date of Birth" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nationality" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Nationality" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Org. unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContactNum" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Mobile Phone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailID" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="Email ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HoldOtype" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="HoldOtypeKey"/>
+                </Key>
+                <Property Name="HoldOtypeKey" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldOtypeText" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Object type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AdviseeAppraisal" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ApprType"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModuleID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Module ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSession" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Acad. Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApprType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Appraisal Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ApprTypeTxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Appraisal(Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weightage" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2" sap:unicode="false" sap:label="Weighting" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ParentTxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Appraisal(Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Result" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Grade symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="NoteTypeFilterList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Notetype"/>
+                </Key>
+                <Property Name="Notetype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sutxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Subtype text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ContactDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ContactId"/>
+                </Key>
+                <Property Name="ContactId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdvPosition" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Department" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MobileNum" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WorkNum" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrgUnit" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailId" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoUri" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PHOTO_URI" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ProgramOfStudy" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProgramId"/>
+                </Key>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramTxt" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="PROGRAM_TXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CourseList" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="ProgramID"/>
+                    <PropertyRef Name="CourseID"/>
+                    <PropertyRef Name="AcadYear"/>
+                    <PropertyRef Name="AcadSession"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CourseID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Module ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CourseTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusTxt" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYearTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSession" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Acad. Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSessionTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Acad. Session (Desc)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYearSess" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ACADYEAR_SESS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OvrAllResult" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Grade symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PerResult" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Grade symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Result" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Grade symbol" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EarnedCredits" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="5" sap:unicode="false" sap:label="Earned Credits" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreditsUnitTxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="CT unit desc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Attempt" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="ATTEMPT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Appraisals" Relationship="PIQ_ADVISEE_DETAILS_SRV.CourseListToAdviseeAppraisal" FromRole="FromRole_CourseListToAdviseeAppraisal" ToRole="ToRole_CourseListToAdviseeAppraisal"/>
+            </EntityType>
+            <EntityType Name="AdviseeStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentStatusId"/>
+                </Key>
+                <Property Name="StudentStatusId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="STATUS_CODE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentStatus" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Sts Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AdvisoryNote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNum"/>
+                    <PropertyRef Name="ProgramId"/>
+                </Key>
+                <Property Name="Notes" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="NOTES" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdvNoteFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteTitle" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Short Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteTypeText" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Note Type (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Changed Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNum" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteType" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Note Type (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhotoUri" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Photo uri" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CreateAdvisoryNote" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNum"/>
+                    <PropertyRef Name="NoteType"/>
+                    <PropertyRef Name="ProgramId"/>
+                </Key>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadLevel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Stage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNum" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteTitle" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Short Title" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NoteText" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="NOTE_TEXT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSession" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Acad. Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="AdvNoteList" Relationship="PIQ_ADVISEE_DETAILS_SRV.CreateAdvisoryNoteAdvNoteList" FromRole="FromRole_CreateAdvisoryNoteAdvNoteList" ToRole="ToRole_CreateAdvisoryNoteAdvNoteList" sap:label="AdvNoteList"/>
+            </EntityType>
+            <EntityType Name="AdviseeResults" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumb"/>
+                </Key>
+                <Property Name="StudentNumb" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Type ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TypeTxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Ext.Test Type (Ds.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TypeInd" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadResult" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Total test rslt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Rank" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="char8" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Transc. status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scale" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SCALE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TestDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TestType" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Ext.Test Type (Ds.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TestTypeTxt" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Test type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TestDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="TEST_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IssuedOn" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ISSUED_ON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValidUntil" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VALID_UNTIL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Ext.Session(Ds)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SessionYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Subtests" Relationship="PIQ_ADVISEE_DETAILS_SRV.TestDetailsToSubtestDetails" FromRole="FromRole_TestDetailsToSubtestDetails" ToRole="ToRole_TestDetailsToSubtestDetails"/>
+            </EntityType>
+            <EntityType Name="SubtestDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubtestTxt" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Ext.Subtest Ds." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scale" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SCALE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNumber" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Version Number Component" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="TranscriptDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="TRANS_GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TransTypeTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Transcript Category" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ResponsibleOrgTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="IssExtOrg (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IssuedOn" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ISSUED_ON" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EarnedCredits" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Char15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InternalCredits" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Char15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Qualification" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Deg./Qual. (Ds)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="QualDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="QUAL_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotAchievements" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="3-Byte field" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotCredits" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Char15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotIntCredits" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Char15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotCreditType" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Original Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="TotExtCredTypeTxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="CT unit desc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IntCreditTxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="CT unit desc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Subjects" Relationship="PIQ_ADVISEE_DETAILS_SRV.TranscriptDetailsToSubjectDetails" FromRole="FromRole_TranscriptDetailsToSubjectDetails" ToRole="ToRole_TranscriptDetailsToSubjectDetails"/>
+            </EntityType>
+            <EntityType Name="SubjectDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="Guid"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Guid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="TRANS_GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CourseText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Reg. Subject" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scale" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SCALE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Acadyear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSession" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Ext.Session(Ds)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNumber" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Version Number Component" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AdvisoryNoteTypeFilter" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNumber"/>
+                    <PropertyRef Name="ProgramId"/>
+                    <PropertyRef Name="Notetype"/>
+                </Key>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYearSet" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Academic Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NotesText" Type="Edm.String" Nullable="false" MaxLength="132" sap:unicode="false" sap:label="Text Line" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notetype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PredefinedFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Boolean Variable (X=True, -=False, Space=Unknown)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StageSet" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Stage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sutxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Subtype text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSessionSet" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Academic Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="AcademicStageSet" Relationship="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicStage" FromRole="FromRole_AdvisoryNoteTypeFilterToAcademicStage" ToRole="ToRole_AdvisoryNoteTypeFilterToAcademicStage"/>
+                <NavigationProperty Name="AcademicYearSet" Relationship="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicYear" FromRole="FromRole_AdvisoryNoteTypeFilterToAcademicYear" ToRole="ToRole_AdvisoryNoteTypeFilterToAcademicYear"/>
+                <NavigationProperty Name="AcademicSessionSet" Relationship="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicSession" FromRole="FromRole_AdvisoryNoteTypeFilterToAcademicSession" ToRole="ToRole_AdvisoryNoteTypeFilterToAcademicSession"/>
+            </EntityType>
+            <EntityType Name="HoldDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProgramId"/>
+                    <PropertyRef Name="StuNumber"/>
+                    <PropertyRef Name="HoldOtype"/>
+                </Key>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Spec." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StatusText" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Sts Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramTxt" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StuNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Subtype" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudyId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Object ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldOtype" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Object type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldTypet" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Sts Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldObjTypet" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Object type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="START_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="END_DATE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notes" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="NOTES" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HoldStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="HoldStatusId"/>
+                </Key>
+                <Property Name="HoldStatusId" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status Spec." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HoldStatustext" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Sts Long Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ActivityInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StudentNum"/>
+                    <PropertyRef Name="ItemNumber"/>
+                </Key>
+                <Property Name="StudentNum" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Created Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivityTypeDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Module" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivityNoKey" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Activity Key number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivityType" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Actvty (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ItemNumber" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Reserve" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ActivityItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ActivityKey"/>
+                </Key>
+                <Property Name="ActivityKey" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Activity Key number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivityText" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Activity Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ActivityType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ActivityListType"/>
+                </Key>
+                <Property Name="ActivityListType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Activity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActivityListDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Actvty (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AcademicYear" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AcadYear"/>
+                    <PropertyRef Name="Notetype"/>
+                </Key>
+                <Property Name="AcadYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notetype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYearText" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="AcademicSessionSet" Relationship="PIQ_ADVISEE_DETAILS_SRV.AcademicYearToAcademicSession" FromRole="FromRole_AcademicYearToAcademicSession" ToRole="ToRole_AcademicYearToAcademicSession"/>
+            </EntityType>
+            <EntityType Name="AcademicSession" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AcadSession"/>
+                    <PropertyRef Name="Notetype"/>
+                </Key>
+                <Property Name="AcadSession" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Acad. Session" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Acad. Year" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notetype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadSessionText" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Acad. Session (Desc)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="AcademicStage" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AcadLevel"/>
+                    <PropertyRef Name="Notetype"/>
+                </Key>
+                <Property Name="AcadLevel" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Stage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReturnMessage" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StudentNumber" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Student Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Notetype" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Note Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Program ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AcadLevelText" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Stage (Desc.)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="CourseListToAdviseeAppraisal" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.CourseList" Multiplicity="1" Role="FromRole_CourseListToAdviseeAppraisal"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseeAppraisal" Multiplicity="*" Role="ToRole_CourseListToAdviseeAppraisal"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CourseListToAdviseeAppraisal">
+                        <PropertyRef Name="AcadSession"/>
+                        <PropertyRef Name="AcadYear"/>
+                        <PropertyRef Name="CourseID"/>
+                        <PropertyRef Name="ProgramID"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CourseListToAdviseeAppraisal">
+                        <PropertyRef Name="AcadSession"/>
+                        <PropertyRef Name="AcadYear"/>
+                        <PropertyRef Name="ModuleID"/>
+                        <PropertyRef Name="ProgramID"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="TestDetailsToSubtestDetails" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.TestDetails" Multiplicity="1" Role="FromRole_TestDetailsToSubtestDetails"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.SubtestDetails" Multiplicity="*" Role="ToRole_TestDetailsToSubtestDetails"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_TestDetailsToSubtestDetails">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="Guid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_TestDetailsToSubtestDetails">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="Guid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="TranscriptDetailsToSubjectDetails" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.TranscriptDetails" Multiplicity="1" Role="FromRole_TranscriptDetailsToSubjectDetails"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.SubjectDetails" Multiplicity="*" Role="ToRole_TranscriptDetailsToSubjectDetails"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_TranscriptDetailsToSubjectDetails">
+                        <PropertyRef Name="Guid"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_TranscriptDetailsToSubjectDetails">
+                        <PropertyRef Name="Guid"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CreateAdvisoryNoteAdvNoteList" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.CreateAdvisoryNote" Multiplicity="1" Role="FromRole_CreateAdvisoryNoteAdvNoteList"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNote" Multiplicity="*" Role="ToRole_CreateAdvisoryNoteAdvNoteList"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CreateAdvisoryNoteAdvNoteList">
+                        <PropertyRef Name="StudentNum"/>
+                        <PropertyRef Name="NoteType"/>
+                        <PropertyRef Name="ProgramId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CreateAdvisoryNoteAdvNoteList">
+                        <PropertyRef Name="StudentNum"/>
+                        <PropertyRef Name="NoteType"/>
+                        <PropertyRef Name="ProgramId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AdviseeHeaderToCourseList" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeader" Multiplicity="1" Role="FromRole_AdviseeHeaderToCourseList"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.CourseList" Multiplicity="*" Role="ToRole_AdviseeHeaderToCourseList"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AdviseeHeaderToCourseList">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AdviseeHeaderToCourseList">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AdviseeHeaderToAdviseeResults" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeader" Multiplicity="1" Role="FromRole_AdviseeHeaderToAdviseeResults"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseeResults" Multiplicity="*" Role="ToRole_AdviseeHeaderToAdviseeResults"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AdviseeHeaderToAdviseeResults">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AdviseeHeaderToAdviseeResults">
+                        <PropertyRef Name="StudentNumb"/>
+                        <PropertyRef Name="ProgramID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ListToDetailsHdr" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseesList" Multiplicity="1" Role="FromRole_ListToDetailsHdr"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeader" Multiplicity="1" Role="ToRole_ListToDetailsHdr"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ListToDetailsHdr">
+                        <PropertyRef Name="ProgramOfStudyId"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ListToDetailsHdr">
+                        <PropertyRef Name="ProgramID"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AdvisoryNoteTypeFilterToAcademicSession" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilter" Multiplicity="1" Role="FromRole_AdvisoryNoteTypeFilterToAcademicSession"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AcademicSession" Multiplicity="*" Role="ToRole_AdvisoryNoteTypeFilterToAcademicSession"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AdvisoryNoteTypeFilterToAcademicSession">
+                        <PropertyRef Name="Notetype"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AdvisoryNoteTypeFilterToAcademicSession">
+                        <PropertyRef Name="Notetype"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="StudentNumber"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AdvisoryNoteTypeFilterToAcademicStage" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilter" Multiplicity="1" Role="FromRole_AdvisoryNoteTypeFilterToAcademicStage"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AcademicStage" Multiplicity="*" Role="ToRole_AdvisoryNoteTypeFilterToAcademicStage"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AdvisoryNoteTypeFilterToAcademicStage">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="Notetype"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AdvisoryNoteTypeFilterToAcademicStage">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="Notetype"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AdvisoryNoteTypeFilterToAcademicYear" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilter" Multiplicity="1" Role="FromRole_AdvisoryNoteTypeFilterToAcademicYear"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AcademicYear" Multiplicity="*" Role="ToRole_AdvisoryNoteTypeFilterToAcademicYear"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AdvisoryNoteTypeFilterToAcademicYear">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="Notetype"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AdvisoryNoteTypeFilterToAcademicYear">
+                        <PropertyRef Name="StudentNumber"/>
+                        <PropertyRef Name="ProgramId"/>
+                        <PropertyRef Name="Notetype"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AcademicYearToAcademicSession" sap:content-version="1">
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AcademicYear" Multiplicity="1" Role="FromRole_AcademicYearToAcademicSession"/>
+                <End Type="PIQ_ADVISEE_DETAILS_SRV.AcademicSession" Multiplicity="*" Role="ToRole_AcademicYearToAcademicSession"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AcademicYearToAcademicSession">
+                        <PropertyRef Name="Notetype"/>
+                        <PropertyRef Name="AcadYear"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AcademicYearToAcademicSession">
+                        <PropertyRef Name="Notetype"/>
+                        <PropertyRef Name="AcadYear"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="PIQ_ADVISEE_DETAILS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ExportToPdfSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ExportToPdf" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseesListSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseesList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseeHeaderSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseeDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseeDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HoldOtypeSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.HoldOtype" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseeAppraisalSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseeAppraisal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="NoteTypeFilterListSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.NoteTypeFilterList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ContactDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ContactDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ProgramOfStudySet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ProgramOfStudy" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CourseListSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.CourseList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseeStatusSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseeStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdvisoryNoteSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNote" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="CreateAdvisoryNoteSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.CreateAdvisoryNote" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdviseeResultsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdviseeResults" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="TestDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.TestDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="SubTestDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.SubtestDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="TranscriptDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.TranscriptDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="SubjectDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.SubjectDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AdvisoryNoteTypeFilterSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilter" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="HoldDetailsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.HoldDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="HoldStatusSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.HoldStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ActivityInfoSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ActivityInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ActivityItemsSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ActivityItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ActivityTypeSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.ActivityType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="AcademicYearSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AcademicYear" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AcademicSessionSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AcademicSession" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="AcademicStageSet" EntityType="PIQ_ADVISEE_DETAILS_SRV.AcademicStage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="CourseListToAdviseeAppraisalSet" Association="PIQ_ADVISEE_DETAILS_SRV.CourseListToAdviseeAppraisal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CourseListSet" Role="FromRole_CourseListToAdviseeAppraisal"/>
+                    <End EntitySet="AdviseeAppraisalSet" Role="ToRole_CourseListToAdviseeAppraisal"/>
+                </AssociationSet>
+                <AssociationSet Name="AdvisoryNoteTypeFilterToAcademicYearSet" Association="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicYear" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdvisoryNoteTypeFilterSet" Role="FromRole_AdvisoryNoteTypeFilterToAcademicYear"/>
+                    <End EntitySet="AcademicYearSet" Role="ToRole_AdvisoryNoteTypeFilterToAcademicYear"/>
+                </AssociationSet>
+                <AssociationSet Name="ListToDetailsHdrSet" Association="PIQ_ADVISEE_DETAILS_SRV.ListToDetailsHdr" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdviseesListSet" Role="FromRole_ListToDetailsHdr"/>
+                    <End EntitySet="AdviseeHeaderSet" Role="ToRole_ListToDetailsHdr"/>
+                </AssociationSet>
+                <AssociationSet Name="AdvisoryNoteTypeFilterToAcademicSessionS" Association="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicSession" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdvisoryNoteTypeFilterSet" Role="FromRole_AdvisoryNoteTypeFilterToAcademicSession"/>
+                    <End EntitySet="AcademicSessionSet" Role="ToRole_AdvisoryNoteTypeFilterToAcademicSession"/>
+                </AssociationSet>
+                <AssociationSet Name="AdviseeHeaderToAdviseeResultsSet" Association="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeaderToAdviseeResults" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdviseeHeaderSet" Role="FromRole_AdviseeHeaderToAdviseeResults"/>
+                    <End EntitySet="AdviseeResultsSet" Role="ToRole_AdviseeHeaderToAdviseeResults"/>
+                </AssociationSet>
+                <AssociationSet Name="CreateAdvisoryNoteToAdvisoryNoteSet" Association="PIQ_ADVISEE_DETAILS_SRV.CreateAdvisoryNoteAdvNoteList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="CreateAdvisoryNoteSet" Role="FromRole_CreateAdvisoryNoteAdvNoteList"/>
+                    <End EntitySet="AdvisoryNoteSet" Role="ToRole_CreateAdvisoryNoteAdvNoteList"/>
+                </AssociationSet>
+                <AssociationSet Name="AdviseeHeaderToCourseListSet" Association="PIQ_ADVISEE_DETAILS_SRV.AdviseeHeaderToCourseList" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdviseeHeaderSet" Role="FromRole_AdviseeHeaderToCourseList"/>
+                    <End EntitySet="CourseListSet" Role="ToRole_AdviseeHeaderToCourseList"/>
+                </AssociationSet>
+                <AssociationSet Name="AdvisoryNoteTypeFilterToAcademicStageSet" Association="PIQ_ADVISEE_DETAILS_SRV.AdvisoryNoteTypeFilterToAcademicStage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AdvisoryNoteTypeFilterSet" Role="FromRole_AdvisoryNoteTypeFilterToAcademicStage"/>
+                    <End EntitySet="AcademicStageSet" Role="ToRole_AdvisoryNoteTypeFilterToAcademicStage"/>
+                </AssociationSet>
+                <AssociationSet Name="TestDetailsToSubtestDetailsSet" Association="PIQ_ADVISEE_DETAILS_SRV.TestDetailsToSubtestDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="TestDetailsSet" Role="FromRole_TestDetailsToSubtestDetails"/>
+                    <End EntitySet="SubTestDetailsSet" Role="ToRole_TestDetailsToSubtestDetails"/>
+                </AssociationSet>
+                <AssociationSet Name="AcademicYearToAcademicSessionSet" Association="PIQ_ADVISEE_DETAILS_SRV.AcademicYearToAcademicSession" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="AcademicYearSet" Role="FromRole_AcademicYearToAcademicSession"/>
+                    <End EntitySet="AcademicSessionSet" Role="ToRole_AcademicYearToAcademicSession"/>
+                </AssociationSet>
+                <AssociationSet Name="TranscriptDetailsToSubjectDetailsSet" Association="PIQ_ADVISEE_DETAILS_SRV.TranscriptDetailsToSubjectDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="TranscriptDetailsSet" Role="FromRole_TranscriptDetailsToSubjectDetails"/>
+                    <End EntitySet="SubjectDetailsSet" Role="ToRole_TranscriptDetailsToSubjectDetails"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/PIQ_ADVISEE_DETAILS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/PIQ_ADVISEE_DETAILS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

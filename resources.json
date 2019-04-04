@@ -1,0 +1,289 @@
+{
+    "resources": [
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "localService/mockserver.js"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "util/Formatter.js"
+        },
+        {
+            "name": "controller/VisaMappingBlock.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/AddressMappingBlock.controller.js"
+        },
+        {
+            "name": "controller/ListSelector.js"
+        },
+        {
+            "name": "controller/RelationMappingBlock.controller.js"
+        },
+        {
+            "name": "controller/Master.controller.js"
+        },
+        {
+            "name": "controller/ContactMappingBlock.controller.js"
+        },
+        {
+            "name": "controller/Detail.controller.js"
+        },
+        {
+            "name": "controller/InsuranceMappingBlock.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/AppointmentDetail.controller.js"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "blocks/relation/RelationMappingBlock.view.xml"
+        },
+        {
+            "name": "blocks/relation/RelationMappingBlock.js"
+        },
+        {
+            "name": "blocks/visa/VisaMappingBlock.view.xml"
+        },
+        {
+            "name": "blocks/visa/VisaMappingBlock.js"
+        },
+        {
+            "name": "blocks/insurance/ContactMappingBlock.js"
+        },
+        {
+            "name": "blocks/insurance/ContactMappingBlock.view.xml"
+        },
+        {
+            "name": "blocks/insurance/InsuranceMappingBlock-dbg.js"
+        },
+        {
+            "name": "blocks/insurance/InsuranceMappingBlock.view.xml"
+        },
+        {
+            "name": "blocks/insurance/InsuranceMappingBlock.js"
+        },
+        {
+            "name": "blocks/disability/DisabilityMappingBlock.view.xml"
+        },
+        {
+            "name": "blocks/disability/DisabilityMappingBlock.js"
+        },
+        {
+            "name": "blocks/address/AddressMappingBlock.js"
+        },
+        {
+            "name": "blocks/address/AddressMappingBlock.view.xml"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/ViewSettingsDialog.fragment.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/Master.view.xml"
+        },
+        {
+            "name": "view/DetailNoObjectsAvailable.view.xml"
+        },
+        {
+            "name": "view/AppointmentDetail.view.xml"
+        },
+        {
+            "name": "view/Detail.view.xml"
+        },
+        {
+            "name": "view/ContactCard.fragment.xml"
+        },
+        {
+            "name": "view/DetailObjectNotFound.view.xml"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": "test/integration/NavigationJourneyPhone-dbg.js"
+        },
+        {
+            "name": "test/integration/NotFoundJourneyPhone-dbg.js"
+        },
+        {
+            "name": "test/integration/NavigationJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/BusyJourneyPhone-dbg.js"
+        },
+        {
+            "name": "test/integration/MasterJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/PhoneJourneys.js"
+        },
+        {
+            "name": "test/integration/AllJourneys.js"
+        },
+        {
+            "name": "test/integration/NavigationJourney.js"
+        },
+        {
+            "name": "test/integration/NotFoundJourneyPhone.js"
+        },
+        {
+            "name": "test/integration/AllJourneys-dbg.js"
+        },
+        {
+            "name": "test/integration/BusyJourney.js"
+        },
+        {
+            "name": "test/integration/MasterJourney.js"
+        },
+        {
+            "name": "test/integration/opaTestsPhone.qunit.html"
+        },
+        {
+            "name": "test/integration/BusyJourneyPhone.js"
+        },
+        {
+            "name": "test/integration/NotFoundJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Detail-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/NotFound-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Master-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Browser-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/Common.js"
+        },
+        {
+            "name": "test/integration/pages/Master.js"
+        },
+        {
+            "name": "test/integration/pages/App-dbg.js"
+        },
+        {
+            "name": "test/integration/pages/NotFound.js"
+        },
+        {
+            "name": "test/integration/pages/App.js"
+        },
+        {
+            "name": "test/integration/pages/Detail.js"
+        },
+        {
+            "name": "test/integration/pages/Browser.js"
+        },
+        {
+            "name": "test/integration/pages/Common-dbg.js"
+        },
+        {
+            "name": "test/integration/PhoneJourneys-dbg.js"
+        },
+        {
+            "name": "test/integration/BusyJourney-dbg.js"
+        },
+        {
+            "name": "test/integration/NavigationJourneyPhone.js"
+        },
+        {
+            "name": "test/integration/opaTests.qunit.html"
+        },
+        {
+            "name": "test/integration/NotFoundJourney.js"
+        },
+        {
+            "name": "test/testsuite.qunit.html"
+        },
+        {
+            "name": "test/mockServer.html"
+        },
+        {
+            "name": "test/unit/model/models.js"
+        },
+        {
+            "name": "test/unit/model/formatter.js"
+        },
+        {
+            "name": "test/unit/model/models-dbg.js"
+        },
+        {
+            "name": "test/unit/model/formatter-dbg.js"
+        },
+        {
+            "name": "test/unit/unitTests.qunit.html"
+        },
+        {
+            "name": "test/unit/controller/App-dbg.controller.js"
+        },
+        {
+            "name": "test/unit/controller/ListSelector.js"
+        },
+        {
+            "name": "test/unit/controller/App.controller.js"
+        },
+        {
+            "name": "test/unit/controller/ListSelector-dbg.js"
+        },
+        {
+            "name": "test/unit/allTests.js"
+        },
+        {
+            "name": "test/unit/allTests-dbg.js"
+        }
+    ]
+}

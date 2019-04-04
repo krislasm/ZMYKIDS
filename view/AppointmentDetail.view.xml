@@ -1,0 +1,125 @@
+<!--
+
+    Copyright (C) 2009-2014 SAP SE or an SAP affiliate company. All rights reserved
+
+-->
+<core:View controllerName="swa.mykids.controller.AppointmentDetail"
+	xmlns="sap.m" xmlns:me="sap.me" xmlns:form="sap.ui.layout.form"
+	xmlns:element="sap.ui.layout.form.FormElement" xmlns:dlg="sap.m.dialog"
+	xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:caui="sap.ca.ui">
+
+	<Page title="{i18n>FULLSCREEN_TITLE}" showNavButton="true"
+		navButtonPress="onBack" id="detail">
+		<content>
+		<!-- Extension point to hide/show/modify sections -->
+			<core:ExtensionPoint name="extDetHeader">
+				<ObjectHeader title="{EventName}" titleActive="false"
+					id="ohdetail" number="{path :'Credits',formatter : '.formatter.getCredits'}" numberUnit="{CreditsText}">
+					<statuses>
+						<ObjectStatus id="statusText_Detail" state="Error"></ObjectStatus>
+					</statuses>
+					<attributes>
+						<ObjectAttribute id="periodId" title="{i18n>TXT_DATE}"
+							text="{path :'EventDate',formatter : '.formatter.setDateNTime'}"></ObjectAttribute>
+						<ObjectAttribute id="periodTime"
+						    title="{i18n>TXT_TIME}"
+							text="{parts:[{path: 'StartTime'},{path: 'EndTime'}], formatter: '.formatter.formatTime'}"></ObjectAttribute>																
+						<ObjectAttribute id="locationId" title="{i18n>TXT_LOCATION}"
+							text="{parts:[{path: 'Location'},{path: 'Building'},{path:'Room'}], formatter: '.formatter.setPlace'}">
+						</ObjectAttribute>
+						</attributes>
+					<statuses>
+						<ObjectStatus text="{path :'Status',formatter : '.formatter.setDetailStatus'}" state="Success" />					
+					</statuses>
+						<attributes>
+						    <ObjectAttribute id="lblCrsName"
+						         title="{i18n>TXT_MODULE_NAME}"
+							text="{CourseName}"></ObjectAttribute>
+						<ObjectAttribute id="evtTypeId" title="{i18n>TXT_CLASS_TYPE}"
+							text="{ClassType}"></ObjectAttribute>
+						<ObjectAttribute  title="{i18n>ACD_YR}"
+							text="{YearDesc}"></ObjectAttribute>
+						<ObjectAttribute  title="{i18n>ACD_SESSN}"
+							text="{SessionDesc}"></ObjectAttribute>
+						<ObjectAttribute id="instrId" title="{i18n>TXT_INSTRUCTOR}"
+							text="{path :'Instructor',formatter : '.formatter.setInstructor'}"
+							active="true" press="onInsClick"></ObjectAttribute>
+					</attributes>
+				</ObjectHeader>
+			</core:ExtensionPoint>
+			<!-- Extension point to hide/show sections -->
+			<core:ExtensionPoint name="extDetNotes">
+				<form:Form title="{i18n>TXT_NOTES}" visible="true">
+					<form:formContainers>
+						<form:FormContainer id="noteContainer">
+							<form:formElements>
+								<form:FormElement id="note">
+									<layout:VerticalLayout width="99%">
+										<layout:form.SimpleForm minWidth="1024"
+											maxContainerCols="2">
+											<Text  maxLines="10" class="sapMSampleTextMaxLinesText"
+												text="{path :'Notes',formatter : '.formatter.setNoDataText'}" width="auto" />
+										</layout:form.SimpleForm>
+									</layout:VerticalLayout>
+								</form:FormElement>
+							</form:formElements>
+						</form:FormContainer>
+					</form:formContainers>
+					<form:layout>
+						<form:ResponsiveGridLayout />
+					</form:layout>
+				</form:Form>
+			</core:ExtensionPoint>
+			<!-- Extension point to hide/show sections -->
+			<core:ExtensionPoint name="extDetAttend">
+			<form:Form title="{i18n>TXT_ADD_ATTNDS}" visible="true">
+				<form:formContainers>
+					<form:FormContainer id="noteCtnr">
+						<form:formElements>
+							<form:FormElement id="addtnId">
+								<layout:Grid id="main_grid" defaultSpan="L12 M12 S12"
+								vSpacing="1" class="myResMainGrid">
+								<layout:content>
+									<layout:Grid defaultSpan="L6 M6 S12" vSpacing="1">
+										<List id="attendsId"    items="{path:'AddStud>/Attnds'}"
+											showNoData="true">
+											<StandardListItem title="{AddStud>oInsName}">												
+												<layoutData>
+													<layout:GridData span="L6 M12 S12" />
+												</layoutData>
+											</StandardListItem>											
+										</List>
+										<List id="attendsId1" items="{path:'AddStud>/Attnds'}"
+											showNoData="true">
+											<StandardListItem title="{AddStud>oInsName}">												
+												<layoutData>
+													<layout:GridData span="L6 M12 S12" />
+												</layoutData>
+											</StandardListItem>
+										</List>
+									</layout:Grid>
+									
+								</layout:content>
+							</layout:Grid>
+							</form:FormElement>
+					</form:formElements>
+					</form:FormContainer>
+				</form:formContainers>
+				<form:layout>
+					<form:ResponsiveGridLayout />
+				</form:layout>
+			</form:Form>										   
+			</core:ExtensionPoint>
+			<!-- Extension point to add sections -->
+			<core:ExtensionPoint name="extDetail" />
+		</content>
+		<footer>
+			<Bar id="bar_Detail" translucent="false">
+				<contentRight>
+					<Button id="statusBtnId"  text="{i18n>TXT_CRS_DTS}" press="onStatusClick" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>
